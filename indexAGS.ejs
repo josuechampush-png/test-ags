@@ -1,0 +1,80 @@
+<!--indexAGS.ejs-->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AGS</title>
+    <table border>
+        <tr>
+            <th><header>AGS</header></th>
+            <th><header>Accueil</header></th>
+            <th><header>Aides</header></th>
+            <th><header>Apropos</header></th>
+        </tr>
+    </table>
+   
+</head>
+
+<body>
+    <h1>Application de Gestion de Stocks</h1>
+
+    <h3>
+        AGS est un site de gestion de stocks destiné au commerçants et aux petits organisations.
+    </h3>
+
+    <h2>Liste de Produits</h2>
+
+    <div class="boite" id="boite">
+        <table border="2" name="tableau" id="tableau">
+            <tr>
+                <th>N°</th>
+                <th>Nom</th>
+                <th>Prix_achat</th>
+                <th>Prix_vente</th>
+                <th>Quantite</th>
+                <th>Benefice</th>
+                <th>Actions</th>
+            </tr>
+            <% for (let i=0 ; i < result.length ; i++){ %>
+                <tr>
+                    <td><% let ident = i+1 %> <%= ident %> </td>
+                    <td><% let nom = result[i].nom %> <%= nom %></td>
+                    <td><% let prix_a = result[i].prix_a %> <%= prix_a %> </td>
+                    <td><% let prix_v = result[i].prix_v %> <%= prix_v %> </td>
+                    <td><% let quantite = result[i].quantite %> <%= quantite %> </td>
+                    <td><% let benefice = result[i].benefice %> <%= benefice %> </td>
+                    <td>
+                        <button onclick="modifier('<%= result[i].id %>', '<%= nom %>', '<%= prix_a %>', '<%= prix_v %>', '<%= quantite %>', '<%= benefice %>')">Modifier</button>
+                        <button onclick="vendre(this, '<%= result[i].id %>')">Vendre</button>
+                        <button onclick="supprimer(this, '<%= result[i].id %>')">Supprimer</button>
+                    </td>
+                </tr>
+            <%}%>
+        </table>
+    </div>
+
+    <div class="insertion" id="insertion" style="display: none;">
+
+        <form id="formulaire" class="formulaire">
+            <input type="hidden" id="id" name="id"><br>
+            <input type="text" id="nom" name="nom" placeholder="Nom du produit..."><br>
+            <input type="number" id="prix_a" name="prix_a" placeholder="Prix d'achat du produit..."><br>
+            <input type="number" id="prix_v" name="prix_v" placeholder="Prix de vente du produit..."><br>
+            <input type="number" id="quantite" name="quantite" placeholder="Quantité du produit..."><br>
+            <br><input type="submit" onclick="enregistrer()" value="Enregistrer"><br>
+        </form>
+
+    </div>
+
+    <div class="ajouter" id="ajouter">
+        <br>
+        <button onclick="ajouter()">+</button>
+        <button onclick="effacer()">-</button>
+        <br>
+    </div>
+
+    <script src="gestionAGS.js"></script>
+</body>
+</html>
