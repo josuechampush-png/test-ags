@@ -13,6 +13,7 @@
     "dotenv": "^17.4.2",
     "ejs": "^5.0.2",
     "epress": "^0.0.1-security",
+    "express": "^5.2.1",
     "mysql": "^2.18.1",
     "mysql2": "^3.22.2"
   }
